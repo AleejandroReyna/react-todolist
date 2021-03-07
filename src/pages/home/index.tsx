@@ -7,10 +7,14 @@ import {
     Github,
     StarFill
 } from 'react-bootstrap-icons'
+import { Helmet } from 'react-helmet'
 
 const Home = () => {
     return (
         <>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
             <section>
                 <Jumbotron>            
                     <h1 className='display-4'>React Todolist</h1>

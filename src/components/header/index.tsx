@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    Navbar,
+    Navbar, Nav,
     Container
 } from 'react-bootstrap'
 import {
@@ -12,6 +12,9 @@ const Header = () => {
         <Navbar bg="light">
             <Container fluid>           
                 <Link to='/' className='navbar-brand'>React Todolist</Link>
+                <Nav>
+                    <Link to="/login/">Login</Link>
+                </Nav>
             </Container>
         </Navbar>
     )
