@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    Navbar, Nav,
+    Navbar, Nav, NavItem,
     Container
 } from 'react-bootstrap'
 import {
@@ -13,7 +13,15 @@ const Header = () => {
             <Container fluid>           
                 <Link to='/' className='navbar-brand'>React Todolist</Link>
                 <Nav>
-                    <Link to="/login/">Login</Link>
+                    <NavItem>
+                        <Link to="/login/" className="nav-link">Login</Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link to="/signup/" className="nav-link">Singup</Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link to="/dashboard/" className="nav-link">Dashboard</Link>
+                    </NavItem>
                 </Nav>
             </Container>
         </Navbar>

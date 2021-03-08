@@ -6,6 +6,7 @@ import {
 import Home from './pages/home'
 import Login from './pages/login'
 import Signup from './pages/signup'
+import Dashboard from './pages/dashboard'
 import Header from './components/header'
 import Footer from './components/footer'
 
@@ -20,6 +21,9 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/signup/">
                     <Signup />
+                </Route>
+                <Route path="/dashboard/">
+                    <Dashboard />
                 </Route>
                 <Route path="/">
                     <Home />
