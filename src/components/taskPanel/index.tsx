@@ -1,12 +1,14 @@
-import React from 'react'
 import { TaskPanelProps } from './interface'
+import TaskCard from '../taskCard'
 
-const TaskPanel = ({type, label}: TaskPanelProps) => {
+const TaskPanel = ({ label, tasks }: TaskPanelProps) => {
     return (
         <article>
             <h5>{label}</h5>
             <section className="bg-light border rounded rounded-3 p-2">
-                tasks drag and drop panel
+                {tasks?.map(task =>
+                    <TaskCard task={task} />
+                )}
             </section>
         </article>
     )

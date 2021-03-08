@@ -12,7 +12,7 @@ const Header = () => {
         <Navbar bg="light">
             <Container fluid>           
                 <Link to='/' className='navbar-brand'>React Todolist</Link>
-                <Nav>
+                <Nav className="mr-auto">
                     <NavItem>
                         <Link to="/login/" className="nav-link">Login</Link>
                     </NavItem>

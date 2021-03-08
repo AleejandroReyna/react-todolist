@@ -11,7 +11,7 @@ const Footer = () => {
             <Container>
                 <Row>
                     <Col className="text-center mt-3">
-                        <p>Made with <HeartFill/> by 
+                        <p>Made with <HeartFill/> by {' '}
                         <a href="https://github.com/AleejandroReyna" rel="noreferrer" target="_blank">Alejandro Reyna</a></p>
                     </Col>
                 </Row>
