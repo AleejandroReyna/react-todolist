@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     Navbar, Nav, NavItem,
-    Container
+    Container, Row, Col
 } from 'react-bootstrap'
 import {
     Link
@@ -9,7 +9,7 @@ import {
 
 const Header = () => {
     return (
-        <Navbar bg="light">
+        <Navbar bg="light" className="navbar-expand-lg">
             <Container fluid>           
                 <Link to='/' className='navbar-brand'>React Todolist</Link>
                 <Nav className="mr-auto">

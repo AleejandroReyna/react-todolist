@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap'
 import { ChevronLeft, ChevronRight, EyeFill } from 'react-bootstrap-icons'
 import { TaskProps } from './taskProps.interface'
+import { Link } from 'react-router-dom'
 
 const TaskCard = ({ task }:TaskProps) => {
     const {id, name, content, status } = task
@@ -11,7 +12,7 @@ const TaskCard = ({ task }:TaskProps) => {
         <Card className="mb-4">
             <Card.Header className="d-flex align-items-center justify-content-between">
                 <h6>{name}</h6>
-                <Button><EyeFill /></Button>
+                <Link to={`/tasks/${id}/`} className="btn btn-primary"><EyeFill /></Link>
             </Card.Header>
             <Card.Body>
                 {content}

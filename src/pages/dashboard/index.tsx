@@ -3,6 +3,7 @@ import TaskPanel from '../../components/taskPanel'
 import {
     Container, Row, Col
 } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { Task } from '../../services/task.interface'
 
 const Dashboard = () => {
@@ -24,8 +25,9 @@ const Dashboard = () => {
             </Helmet>
             <Container fluid>
                 <Row>
-                    <Col>
-                        <h3 className="mt-4 mb-4">Dashboard</h3>
+                    <Col className="py-4 d-flex justify-content-between align-items-center">
+                        <h3>Dashboard</h3>
+                        <Link to="/tasks/create/" className="btn btn-primary">Create Task</Link>          
                     </Col>
                 </Row>
                 <Row>
