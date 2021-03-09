@@ -10,7 +10,7 @@ import {
     Card
 } from 'react-bootstrap'
 
-const EditTask = ({ match }) => {
+const EditTask = ( { match } ) => {
     const _task:Task = {name: 'sample task', content: 'sample task content', status: 'todo'} 
     const [disabled, setDisabled] = useState(false)
     const {params: { id }} = match 
