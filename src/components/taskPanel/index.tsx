@@ -7,7 +7,7 @@ const TaskPanel = ({ label, tasks }: TaskPanelProps) => {
             <h5>{label}</h5>
             <section className="bg-light border rounded rounded-3 p-2">
                 {tasks?.map(task =>
-                    <TaskCard task={task} />
+                    <TaskCard task={task} key={`task-${task.id}`} />
                 )}
             </section>
         </article>
