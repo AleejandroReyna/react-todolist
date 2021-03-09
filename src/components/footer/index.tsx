@@ -4,10 +4,11 @@ import {
 import {
     HeartFill
 } from 'react-bootstrap-icons'
+import './index.css'
 
 const Footer = () => {
     return (
-        <footer className="mt-5 bg-light">
+        <footer className="bg-light main-footer">
             <Container>
                 <Row>
                     <Col className="text-center mt-3">
