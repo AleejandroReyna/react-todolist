@@ -1,14 +1,16 @@
 import {
     Container, Row, Col,
     Card,
-    Button
+    Button,
+    Modal
 } from 'react-bootstrap'
 import { Task } from '../../../services/task.interface'
 import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
+import { Switch, Route, Link, useRouteMatch } from 'react-router-dom'
 
 const DetailTask = ( { match } ) => {
     const task:Task = {name: 'task test', content: 'task test example', status: 'todo'}
+    let { url } = useRouteMatch()
     const {params: { id }} = match 
 
     return (
@@ -29,12 +31,32 @@ const DetailTask = ( { match } ) => {
                                 <strong>Content: </strong><span>{ task.content }</span><br/>
                                 <strong>Status: </strong><span>{ task.status }</span><br/>
                                 <strong>Actions: </strong>{' '}
-                                <Link className="btn btn-success" to={`/tasks/${id}/edit/`}>Edit</Link>
+                                <Link className="btn btn-success" to={`/tasks/${id}/edit/`}>Edit</Link>{' '}
+                                <Link className="btn btn-danger" to={`/tasks/${id}/delete/`}>Delete</Link>
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
             </Container>
+            <Switch>
+                <Route path={`${url}/delete/`}>
+                    <Helmet>
+                        <title>Delete Task</title>
+                    </Helmet>
+                    <Modal show={true}>
+                        <Modal.Header>
+                            <Modal.Title>Delete Task</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>Are you sure to delete task with ID: {id}</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Link className="btn btn-outline-secondary" to={`/tasks/${id}/`}>Cancel</Link>{' '}
+                            <Button variant="danger">Delete</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </Route>
+            </Switch>
         </>
     )
 }
