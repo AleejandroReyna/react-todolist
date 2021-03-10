@@ -16,7 +16,6 @@ import PrivateRoute from './components/privateRoute'
 import OnlyPublicRoute from './components/onlyPublicRoute'
 
 const AppRouter = () => {
-    console.log(PrivateRoute)
     return (
         <Router>
             <Header />
