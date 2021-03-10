@@ -1,6 +1,8 @@
 import { Task } from '../../../services/task.interface'
 import { Helmet } from 'react-helmet'
 import TaskForm from '../../../components/taskForm'
+import createTask from '../../../services/createTask.service'
+import { CreateTask as CreateTaskInterface } from '../../../services/createTask.interface'
 import {
     useState
 } from 'react'
@@ -8,14 +10,21 @@ import {
     Container, Row, Col,
     Card
 } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 const CreateTask = () => {
     const _task:Task = {name: '', content: '', status: 'todo'} 
     const [disabled, setDisabled] = useState(false)
+    const history = useHistory()
 
-    const onSubmit = (task: Task):void => {
-        console.log(task)
+    const onSubmit = async (task: Task) => {
         setDisabled(true)
+        const request:CreateTaskInterface = await createTask(task)
+        if(request.status === 201) {
+            history.push(`/tasks/${request.data.id}`)
+        } else {
+            setDisabled(false)
+        }
     }
 
     return (
