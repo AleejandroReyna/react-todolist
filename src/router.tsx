@@ -20,13 +20,17 @@ const AppRouter = () => {
     return (
         <Router>
             <UserContext.Consumer>
-                {user =>
+                {({user}) =>
                     <Header user={user} />
                 }
             </UserContext.Consumer>
             <Switch>
                 <OnlyPublicRoute path="/login/">
-                    <Login />
+                <UserContext.Consumer>
+                    {({user, toggleUser}) =>
+                        <Login user={user} toggleUser={toggleUser} />
+                    }
+                </UserContext.Consumer>
                 </OnlyPublicRoute>
                 <OnlyPublicRoute path="/signup/">
                     <Signup />

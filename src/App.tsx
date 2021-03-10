@@ -6,9 +6,12 @@ import { UserContext } from './contexts/user.context'
 
 
 function App() {
-  const [username] = useState(getUsername())
+  const [username, setUsername] = useState(getUsername())
+  const changeUsername = (value:string) => {
+    setUsername(value)
+  }
   return (
-      <UserContext.Provider value={username}>
+      <UserContext.Provider value={{user: username, toggleUser: changeUsername}}>
         <Router />
       </UserContext.Provider>
   );

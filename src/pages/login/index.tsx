@@ -12,8 +12,9 @@ import loginService from '../../services/login.service'
 import { Login as LoginInterface } from '../../services/login.interface'
 import setToken from '../../services/setToken.service'
 import { useHistory } from 'react-router-dom'
+import { LoginProps } from './loginProps.interface'
 
-const Login = () => {
+const Login = ({user, toggleUser}:LoginProps) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [submitting, setSubmitting] = useState(false)
@@ -25,6 +26,7 @@ const Login = () => {
         const response = await loginService(params)
         if(response.status === 200) {
             setToken(response.response)
+            toggleUser(response.response.username)
             history.push("/dashboard/")
         } else {
             setSubmitting(false)
@@ -60,7 +62,7 @@ const Login = () => {
                                         value={password} 
                                         onChange={e => setPassword(e.target.value)}
                                         disabled={submitting} />
-                                </FormGroup>
+                                </FormGroup>                                   
                                 <Button onClick={login} disabled={submitting}>Login</Button>
                             </Form>
                         </Card.Body>

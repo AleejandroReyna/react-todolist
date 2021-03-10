@@ -31,6 +31,13 @@ const Header = ( {user}:HeaderProps ) => {
                         </>
                     }
                 </Nav>
+                {user &&
+                    <Nav>
+                        <NavItem>
+                            <span>Welcome! {user}</span>
+                        </NavItem>
+                    </Nav>
+                }
             </Container>
         </Navbar>
     )
