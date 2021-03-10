@@ -10,14 +10,14 @@ import {
 } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
-interface SignupInterface {
+interface EditInterface {
     id: string
 }
 
 const EditTask = () => {
     const _task:Task = {name: 'sample task', content: 'sample task content', status: 'todo'} 
     const [disabled, setDisabled] = useState(false)
-    const params:SignupInterface = useParams()
+    const params:EditInterface = useParams()
     const { id } = params
     const onSubmit = (task: Task):void => {
         console.log({id, ...task})

@@ -23,7 +23,7 @@ const Login = () => {
         setSubmitting(true)
         const params:LoginInterface = {username, password}
         const response = await loginService(params)
-        if(response.status == 200) {
+        if(response.status === 200) {
             setToken(response.response)
             history.push("/dashboard/")
         } else {

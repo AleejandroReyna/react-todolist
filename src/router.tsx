@@ -13,7 +13,7 @@ import DetailTask from './pages/tasks/detailTask'
 import Header from './components/header'
 import Footer from './components/footer'
 import PrivateRoute from './components/privateRoute'
-
+import OnlyPublicRoute from './components/onlyPublicRoute'
 
 const AppRouter = () => {
     console.log(PrivateRoute)
@@ -21,12 +21,12 @@ const AppRouter = () => {
         <Router>
             <Header />
             <Switch>
-                <Route path="/login/">
+                <OnlyPublicRoute path="/login/">
                     <Login />
-                </Route>
-                <Route path="/signup/">
+                </OnlyPublicRoute>
+                <OnlyPublicRoute path="/signup/">
                     <Signup />
-                </Route>
+                </OnlyPublicRoute>
                 <PrivateRoute path="/dashboard/">
                     <Dashboard />
                 </PrivateRoute>
