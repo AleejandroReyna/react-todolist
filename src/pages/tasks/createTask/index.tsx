@@ -20,7 +20,7 @@ const CreateTask = () => {
     const onSubmit = async (task: Task) => {
         setDisabled(true)
         const request:CreateTaskInterface = await createTask(task)
-        if(request.status === 201) {
+        if(request.status === 201 && request.data) {
             history.push(`/tasks/${request.data.id}`)
         } else {
             setDisabled(false)
