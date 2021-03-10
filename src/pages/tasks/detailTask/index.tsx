@@ -6,12 +6,18 @@ import {
 } from 'react-bootstrap'
 import { Task } from '../../../services/task.interface'
 import { Helmet } from 'react-helmet'
-import { Switch, Route, Link, useRouteMatch } from 'react-router-dom'
+import { Switch, Route, Link, useParams, useRouteMatch } from 'react-router-dom'
 
-const DetailTask = ( { match } ) => {
+
+interface DetailInterface {
+    id: string
+}
+
+const DetailTask = () => {
     const task:Task = {name: 'task test', content: 'task test example', status: 'todo'}
-    let { url } = useRouteMatch()
-    const {params: { id }} = match 
+    const params:DetailInterface = useParams() 
+    const { id } = params
+    const { url } = useRouteMatch()
 
     return (
         <>

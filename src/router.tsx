@@ -12,9 +12,11 @@ import EditTask from './pages/tasks/editTask'
 import DetailTask from './pages/tasks/detailTask'
 import Header from './components/header'
 import Footer from './components/footer'
+import PrivateRoute from './components/privateRoute'
 
 
 const AppRouter = () => {
+    console.log(PrivateRoute)
     return (
         <Router>
             <Header />
@@ -25,14 +27,18 @@ const AppRouter = () => {
                 <Route path="/signup/">
                     <Signup />
                 </Route>
-                <Route path="/dashboard/">
+                <PrivateRoute path="/dashboard/">
                     <Dashboard />
-                </Route>
-                <Route path="/tasks/create/">
+                </PrivateRoute>
+                <PrivateRoute path="/tasks/create/">
                     <CreateTask />
-                </Route>
-                <Route path="/tasks/:id/edit/" render={props => <EditTask {...props} />}/>
-                <Route path="/tasks/:id/" render={props => <DetailTask {...props} />}/>
+                </PrivateRoute>
+                <PrivateRoute path="/tasks/:id/edit/">
+                    <EditTask />
+                </PrivateRoute>
+                <PrivateRoute path="/tasks/:id/">
+                    <DetailTask />
+                </PrivateRoute>
                 <Route path="/">
                     <Home />
                 </Route>

@@ -8,12 +8,17 @@ import {
     Container, Row, Col,
     Card
 } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 
-const EditTask = ( { match } ) => {
+interface SignupInterface {
+    id: string
+}
+
+const EditTask = () => {
     const _task:Task = {name: 'sample task', content: 'sample task content', status: 'todo'} 
     const [disabled, setDisabled] = useState(false)
-    const {params: { id }} = match 
-
+    const params:SignupInterface = useParams()
+    const { id } = params
     const onSubmit = (task: Task):void => {
         console.log({id, ...task})
         setDisabled(true)
