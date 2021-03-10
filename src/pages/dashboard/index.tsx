@@ -3,20 +3,35 @@ import TaskPanel from '../../components/taskPanel'
 import {
     Container, Row, Col
 } from 'react-bootstrap'
+import {
+    useEffect,
+    useState
+} from 'react'
 import { Link } from 'react-router-dom'
 import { Task } from '../../services/task.interface'
+import getTasks from '../../services/getTasks.service'
+import { GetTasks } from '../../services/getTasks.interface'
 
 const Dashboard = () => {
-    const tasks:Task[] = [
-        {id: '1', name: 'test task 1', content: 'test content', status: 'todo'},
-        {id: '2', name: 'test task 2', content: 'test content', status: 'doing'},
-        {id: '3', name: 'test task 3', content: 'test content', status: 'inreview'},
-        {id: '4', name: 'test task 4', content: 'test content', status: 'done'}
-    ] 
+    const [loading, setLoading] = useState(true)
+    const [tasks, setTasks] = useState<Task[]>([]) 
 
     const getPanelTasks = (status: string):Task[] => {
         return tasks.filter(task => task.status === status)
     }
+
+    useEffect(() => {
+        if(loading) {
+            const getState = async () => {
+                const request:GetTasks = await getTasks()
+                if(request.data && request.status === 200) {
+                    setTasks(request.data)
+                }
+                setLoading(false)
+            }
+            getState()
+        }
+    }, [loading])
 
     return (
         <>
@@ -32,16 +47,16 @@ const Dashboard = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <TaskPanel type="todo" label="To Do" tasks={getPanelTasks('todo')} />
+                        <TaskPanel loading={loading} type="todo" label="To Do" tasks={getPanelTasks('todo')} />
                     </Col>
                     <Col>
-                        <TaskPanel type="doing" label="Doing" tasks={getPanelTasks('doing')} />
+                        <TaskPanel loading={loading} type="doing" label="Doing" tasks={getPanelTasks('doing')} />
                     </Col>
                     <Col>
-                        < TaskPanel type="inreview" label="In Review" tasks={getPanelTasks('inreview')} />
+                        < TaskPanel loading={loading} type="inreview" label="In Review" tasks={getPanelTasks('inreview')} />
                     </Col>
                     <Col>
-                        < TaskPanel type="done" label="Done" tasks={getPanelTasks('done')} />
+                        < TaskPanel loading={loading} type="done" label="Done" tasks={getPanelTasks('done')} />
                     </Col>
                 </Row>
             </Container>
