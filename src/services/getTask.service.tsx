@@ -1,31 +1,27 @@
 import refreshToken from './refreshToken.service'
 import { RefreshToken } from './refreshToken.interface'
-import { Task } from './task.interface'
 import { ServiceTask } from './serviceTask.interface'
 
-const createTask = async (task:Task):Promise<ServiceTask> => {
-    const url = String(process.env.REACT_APP_TASKS_URL)
+
+const getTask = async (id: string):Promise<ServiceTask> => {
+    const url = String(`${process.env.REACT_APP_TASKS_URL}${id}`)
     const refreshRequest:RefreshToken = await refreshToken()
     if (refreshRequest.status !== 200) {
         return refreshRequest
     }
     const { access } = refreshRequest
     const request = await fetch(url, {
-        method: 'post',
+        method: 'get',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${access}`
         },
-        body: JSON.stringify(task)
     })
-    if(request.status === 201) {
-        const response = await request.json()
-        return {status: request.status, data: response}
+    const response = await request.json()
+    if(request.status !== 200) {
+        return { status: request.status, errors: [response.detail] }
     }
-    return {
-        status: request.status,
-        errors: ['invalid token.']
-    }
+    return { status: request.status, data: response }
 }
 
-export default createTask
+export default getTask

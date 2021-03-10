@@ -2,7 +2,7 @@ import { Task } from '../../../services/task.interface'
 import { Helmet } from 'react-helmet'
 import TaskForm from '../../../components/taskForm'
 import createTask from '../../../services/createTask.service'
-import { CreateTask as CreateTaskInterface } from '../../../services/createTask.interface'
+import { ServiceTask } from '../../../services/serviceTask.interface'
 import {
     useState
 } from 'react'
@@ -19,7 +19,7 @@ const CreateTask = () => {
 
     const onSubmit = async (task: Task) => {
         setDisabled(true)
-        const request:CreateTaskInterface = await createTask(task)
+        const request:ServiceTask = await createTask(task)
         if(request.status === 201 && request.data) {
             history.push(`/tasks/${request.data.id}`)
         } else {
