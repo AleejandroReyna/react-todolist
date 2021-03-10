@@ -3,6 +3,7 @@ import {
     Switch,
     Route
 } from 'react-router-dom'
+import { UserContext } from './contexts/user.context'
 import Home from './pages/home'
 import Login from './pages/login'
 import Signup from './pages/signup'
@@ -18,7 +19,11 @@ import OnlyPublicRoute from './components/onlyPublicRoute'
 const AppRouter = () => {
     return (
         <Router>
-            <Header />
+            <UserContext.Consumer>
+                {user =>
+                    <Header user={user} />
+                }
+            </UserContext.Consumer>
             <Switch>
                 <OnlyPublicRoute path="/login/">
                     <Login />

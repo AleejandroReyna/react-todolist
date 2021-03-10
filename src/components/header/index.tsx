@@ -1,32 +1,20 @@
 import {
-    useState,
-    useEffect
-} from 'react'
-import {
     Navbar, Nav, NavItem,
     Container
 } from 'react-bootstrap'
 import {
     Link
 } from 'react-router-dom'
-import getToken from '../../services/getToken.service'
+import { HeaderProps } from './headerProps.interface'
 
-const Header = () => {
-    const [logged, isLogged] = useState(false)
-
-    useEffect(() => {
-        if (getToken()) {
-            isLogged(true)
-        } else {
-            isLogged(false)
-        }
-    }, [])
+const Header = ( {user}:HeaderProps ) => {
+    
     return (
         <Navbar bg="light" className="navbar-expand-lg">
             <Container fluid>           
                 <Link to='/' className='navbar-brand'>React Todolist</Link>
                 <Nav className="mr-auto">
-                    {logged ?
+                    {user ?
                         <>
                             <NavItem>
                                 <Link to="/dashboard/" className="nav-link">Dashboard</Link>
