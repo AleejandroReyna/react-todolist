@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     Navbar, Nav, NavItem,
-    Container, Row, Col
+    Container
 } from 'react-bootstrap'
 import {
     Link

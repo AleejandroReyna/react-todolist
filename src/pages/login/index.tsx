@@ -1,11 +1,35 @@
 import {
+    useState
+} from 'react'
+import {
     Container, Row, Col,
     Card,
-    Form, FormControl, FormGroup
+    Form, FormControl, FormGroup,
+    Button
 } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
+import loginService from '../../services/login.service'
+import { Login as LoginInterface } from '../../services/login.interface'
+import setToken from '../../services/setToken.service'
+import { useHistory } from 'react-router-dom'
 
 const Login = () => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [submitting, setSubmitting] = useState(false)
+    const history = useHistory()
+
+    const login = async () => {
+        setSubmitting(true)
+        const params:LoginInterface = {username, password}
+        const response = await loginService(params)
+        if(response.status == 200) {
+            setToken(response.response)
+            history.push("/dashboard/")
+        } else {
+            setSubmitting(false)
+        }
+    }
     
     return (
         <>
@@ -23,12 +47,21 @@ const Login = () => {
                             <Form>
                                 <FormGroup>
                                     <label htmlFor="username">Username: </label>
-                                    <FormControl type="text" />
+                                    <FormControl 
+                                        type="text" 
+                                        value={username} 
+                                        onChange={e => setUsername(e.target.value)}
+                                        disabled={submitting} />
                                 </FormGroup>
                                 <FormGroup>
                                     <label htmlFor="password">Password: </label>
-                                    <FormControl type="password" />
+                                    <FormControl 
+                                        type="password"
+                                        value={password} 
+                                        onChange={e => setPassword(e.target.value)}
+                                        disabled={submitting} />
                                 </FormGroup>
+                                <Button onClick={login} disabled={submitting}>Login</Button>
                             </Form>
                         </Card.Body>
                     </Card>

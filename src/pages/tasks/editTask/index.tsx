@@ -2,7 +2,6 @@ import { Task } from '../../../services/task.interface'
 import { Helmet } from 'react-helmet'
 import TaskForm from '../../../components/taskForm'
 import {
-    useEffect,
     useState
 } from 'react'
 import {
