@@ -1,8 +1,8 @@
 import { User } from './user.interface'
 
-const loginService = async ( params:User ) => {
+const signupService = async ( params : User ) => {
     try {
-        const uri = String(process.env.REACT_APP_LOGIN_URL)
+        const uri = `${process.env.REACT_APP_SIGNUP_URL}`
         const request = await fetch(uri, {
             method: 'post',
             headers: {
@@ -11,10 +11,11 @@ const loginService = async ( params:User ) => {
             body: JSON.stringify(params)
         })
         const response = await request.json()
+        console.log(response)
         return {status: request.status, response}
-    } catch(e) {
+    } catch (e) {
         return {status: 500, errors: [`${e}`]}
     }
 }
 
-export default loginService
+export default signupService

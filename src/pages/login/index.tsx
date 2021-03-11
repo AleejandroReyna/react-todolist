@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 import loginService from '../../services/login.service'
-import { Login as LoginInterface } from '../../services/login.interface'
+import { User } from '../../services/user.interface'
 import setToken from '../../services/setToken.service'
 import { useHistory } from 'react-router-dom'
 import { LoginProps } from './loginProps.interface'
@@ -22,8 +22,9 @@ const Login = ({user, toggleUser}:LoginProps) => {
 
     const login = async () => {
         setSubmitting(true)
-        const params:LoginInterface = {username, password}
+        const params:User = {username, password}
         const response = await loginService(params)
+        console.log(response)
         if(response.status === 200) {
             setToken(response.response)
             toggleUser(response.response.username)
