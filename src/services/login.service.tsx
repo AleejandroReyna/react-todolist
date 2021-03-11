@@ -2,7 +2,7 @@ import { User } from './user.interface'
 
 const loginService = async ( params:User ) => {
     try {
-        const uri = String(process.env.REACT_APP_LOGIN_URL)
+        const uri = `${process.env.REACT_APP_LOGIN_URL}`
         const request = await fetch(uri, {
             method: 'post',
             headers: {
