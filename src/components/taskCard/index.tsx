@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, EyeFill } from 'react-bootstrap-icons'
 import { TaskProps } from './taskProps.interface'
 import { Link } from 'react-router-dom'
 
-const TaskCard = ({ task }:TaskProps) => {
+const TaskCard = ({ task, variant }:TaskProps) => {
     const {id, name, content, status } = task
     return (
         <Card className="mb-4">
@@ -20,10 +20,10 @@ const TaskCard = ({ task }:TaskProps) => {
             <Card.Footer className="text-center">
                 <ButtonGroup>
                     {status !== 'todo' &&
-                        <Button variant='outline-secondary'><ChevronLeft /></Button>
+                        <Button variant={variant}><ChevronLeft /></Button>
                     }
                     {status !== 'done' &&
-                        <Button variant='outline-secondary'><ChevronRight /></Button>
+                        <Button variant={variant}><ChevronRight /></Button>
                     }
                 </ButtonGroup>
             </Card.Footer>

@@ -2,7 +2,7 @@ import { TaskPanelProps } from './interface'
 import TaskCard from '../taskCard'
 import { Spinner } from 'react-bootstrap'
 
-const TaskPanel = ({ label, tasks, loading }: TaskPanelProps) => {
+const TaskPanel = ({ label, tasks, loading, variant }: TaskPanelProps) => {
     return (
         <article>
             <h5>{label}</h5>
@@ -12,9 +12,12 @@ const TaskPanel = ({ label, tasks, loading }: TaskPanelProps) => {
                         <Spinner animation="border" variant="primary" />
                     </div>
                 :
-                    tasks?.map(task =>
-                        <TaskCard task={task} key={`task-${task.id}`} />
-                    )
+                    tasks.length > 0 ?
+                        tasks?.map(task =>
+                            <TaskCard task={task} key={`task-${task.id}`} variant={variant} />
+                        )
+                    :
+                        <div className="text-center"><small>The panel has not tasks!</small></div>
                 }
             </section>
         </article>

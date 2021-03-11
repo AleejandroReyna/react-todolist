@@ -47,16 +47,16 @@ const Dashboard = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <TaskPanel loading={loading} type="todo" label="To Do" tasks={getPanelTasks('todo')} />
+                        <TaskPanel loading={loading} type="todo" label="To Do" tasks={getPanelTasks('todo')} variant="light" />
                     </Col>
                     <Col>
-                        <TaskPanel loading={loading} type="doing" label="Doing" tasks={getPanelTasks('doing')} />
+                        <TaskPanel loading={loading} type="doing" label="Doing" tasks={getPanelTasks('doing')} variant="info" />
                     </Col>
                     <Col>
-                        < TaskPanel loading={loading} type="inreview" label="In Review" tasks={getPanelTasks('inreview')} />
+                        < TaskPanel loading={loading} type="inreview" label="In Review" tasks={getPanelTasks('inreview')} variant="primary" />
                     </Col>
                     <Col>
-                        < TaskPanel loading={loading} type="done" label="Done" tasks={getPanelTasks('done')} />
+                        < TaskPanel loading={loading} type="done" label="Done" tasks={getPanelTasks('done')} variant="success" />
                     </Col>
                 </Row>
             </Container>
