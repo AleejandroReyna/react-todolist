@@ -11,9 +11,10 @@ import {
 } from 'react-bootstrap'
 import { Task } from '../../../services/task.interface'
 import { Helmet } from 'react-helmet'
-import { Switch, Route, Link, useParams, useRouteMatch } from 'react-router-dom'
+import { Switch, Route, Link, useParams, useRouteMatch, useHistory } from 'react-router-dom'
 import getTask from '../../../services/getTask.service'
 import { ServiceTask } from '../../../services/serviceTask.interface'
+import deleteTask from '../../../services/deleteTask.service'
 
 
 interface DetailInterface {
@@ -21,31 +22,39 @@ interface DetailInterface {
 }
 
 const DetailTask = () => {
-    const [task, setTask] = useState<Task>({id: "", name: "", content: "", status: ""})
-    const [loading, setLoading] = useState(true)
+    const [task, setTask] = useState<Task | null>(null)
+    const [loading, setLoading] = useState(false)
     const params:DetailInterface = useParams() 
     const { id } = params
     const { url } = useRouteMatch()
+    const history = useHistory()
 
     useEffect(() => {
-        if(loading) {
-            const getData = async () => {
-                const request:ServiceTask = await getTask(id)
-                if(request.status === 200 && request.data) {
-                    setTask(request.data)
-                }
-                setLoading(false)
+        const getData = async () => {
+            const request:ServiceTask = await getTask(id)
+            if(request.status === 200 && request.data) {
+                setTask(request.data)
             }
-            getData()
         }
-    }, [loading])
+        getData()
+    }, [task])
+
+    const completeDelete = async () => {
+        setLoading(true)
+        const request = await deleteTask(id)
+        if(request.status === 204) {
+            history.push('/dashboard/')
+        } else {
+            setLoading(false)
+        }
+    }
 
     return (
         <>
             <Helmet>
                 <title>Task: { id }</title>
             </Helmet>
-            {loading ?
+            {!task ?
                 <div className="text-center my-4"><Spinner variant="primary" animation="border" /></div>
             :
                 <>
@@ -83,7 +92,7 @@ const DetailTask = () => {
                                 </Modal.Body>
                                 <Modal.Footer>
                                     <Link className="btn btn-outline-secondary" to={`/tasks/${id}/`}>Cancel</Link>{' '}
-                                    <Button variant="danger">Delete</Button>
+                                    <Button variant="danger" disabled={loading} onClick={completeDelete} >Delete</Button>
                                 </Modal.Footer>
                             </Modal>
                         </Route>
