@@ -19,6 +19,9 @@ const Header = ( {user}:HeaderProps ) => {
                             <NavItem>
                                 <Link to="/dashboard/" className="nav-link">Dashboard</Link>
                             </NavItem>
+                            <NavItem>
+                                <Link to="/logout/" className="nav-link">Logout</Link>
+                            </NavItem>
                         </>
                     :   
                         <>

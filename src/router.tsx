@@ -6,6 +6,7 @@ import {
 import { UserContext } from './contexts/user.context'
 import Home from './pages/home'
 import Login from './pages/login'
+import Logout from './pages/logout'
 import Signup from './pages/signup'
 import Dashboard from './pages/dashboard'
 import CreateTask from './pages/tasks/createTask'
@@ -26,12 +27,19 @@ const AppRouter = () => {
             </UserContext.Consumer>
             <Switch>
                 <OnlyPublicRoute path="/login/">
-                <UserContext.Consumer>
-                    {({user, toggleUser}) =>
-                        <Login user={user} toggleUser={toggleUser} />
-                    }
-                </UserContext.Consumer>
+                    <UserContext.Consumer>
+                        {({user, toggleUser}) =>
+                            <Login user={user} toggleUser={toggleUser} />
+                        }
+                    </UserContext.Consumer>
                 </OnlyPublicRoute>
+                <PrivateRoute path="/logout/">
+                    <UserContext.Consumer>
+                        {({user, toggleUser}) =>
+                            <Logout user={user} toggleUser={toggleUser} />
+                        }
+                    </UserContext.Consumer>
+                </PrivateRoute>
                 <OnlyPublicRoute path="/signup/">
                     <Signup />
                 </OnlyPublicRoute>
