@@ -31,7 +31,6 @@ const EditTask = () => {
     const onSubmit = async (task: Task) => {
         setDisabled(true)
         const request:ServiceTask = await editTask(id, task)
-        console.log(request)
         if(request.status === 200 && request.data) {
             console.log(request.data)
             history.push(`/tasks/${request.data.id}`)

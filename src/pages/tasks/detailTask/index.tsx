@@ -23,7 +23,7 @@ interface DetailInterface {
 
 const DetailTask = () => {
     const [task, setTask] = useState<Task | null>(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const params:DetailInterface = useParams() 
     const { id } = params
     const { url } = useRouteMatch()
@@ -34,10 +34,11 @@ const DetailTask = () => {
             const request:ServiceTask = await getTask(id)
             if(request.status === 200 && request.data) {
                 setTask(request.data)
+                setLoading(false)
             }
         }
         getData()
-    }, [task])
+    }, [loading])
 
     const completeDelete = async () => {
         setLoading(true)

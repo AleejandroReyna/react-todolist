@@ -27,6 +27,7 @@ const Dashboard = () => {
                 if(request.data && request.status === 200) {
                     setTasks(request.data)
                 }
+                console.log(request)
                 setLoading(false)
             }
             getState()
