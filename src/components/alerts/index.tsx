@@ -14,7 +14,7 @@ const Alerts = ({alerts, deleteAlert}:AlertContextProps) => {
                             <Alert 
                                 key={idx} 
                                 variant={alert.variant} 
-                                onClose={() => deleteAlert ? deleteAlert(alert) : null} 
+                                onClose={() => deleteAlert ? deleteAlert(idx) : null} 
                                 dismissible
                                 >
                                 {alert.content}

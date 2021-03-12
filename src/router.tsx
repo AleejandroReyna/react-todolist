@@ -36,11 +36,16 @@ const AppRouter = () => {
             <Switch>
 
                 <OnlyPublicRoute path="/login/">
-                    <UserContext.Consumer>
-                        {({user, toggleUser}) =>
-                            <Login user={user} toggleUser={toggleUser} />
+                    <AlertsContext.Consumer>
+                        {( { addAlert } ) =>
+                            <UserContext.Consumer>
+                                {({user, toggleUser}) =>
+                                    addAlert &&
+                                        <Login user={user} toggleUser={toggleUser} addAlert={addAlert} />
+                                }
+                            </UserContext.Consumer>
                         }
-                    </UserContext.Consumer>
+                    </AlertsContext.Consumer>
                 </OnlyPublicRoute>
                 
                 <PrivateRoute path="/logout/">

@@ -18,9 +18,9 @@ function App() {
     setAlerts([...alerts, alert])
   }
 
-  const deleteAlert = (alert: Alert) => {
+  const deleteAlert = (index: number) => {
     let _alerts = [...alerts]
-    _alerts.splice(_alerts.indexOf(alert), 1)
+    _alerts.splice(index, 1)
     setAlerts(_alerts)
   }
 

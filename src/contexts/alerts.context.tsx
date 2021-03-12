@@ -4,7 +4,7 @@ import { Alert, AlertContextProps } from './alert.interface'
 const initializeAlert:AlertContextProps = {
     alerts: [],
     addAlert: (alert:Alert) => {},
-    deleteAlert: (alert:Alert) => {}
+    deleteAlert: (index:number) => {}
 }
 
 export const AlertsContext = createContext(initializeAlert)
