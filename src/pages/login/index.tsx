@@ -14,7 +14,7 @@ import setToken from '../../services/setToken.service'
 import { useHistory } from 'react-router-dom'
 import { LoginProps } from './loginProps.interface'
 
-const Login = ({user, toggleUser}:LoginProps) => {
+const Login = ({user, toggleUser, addAlert}:LoginProps) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [submitting, setSubmitting] = useState(false)
@@ -28,10 +28,20 @@ const Login = ({user, toggleUser}:LoginProps) => {
         if(response.status === 200) {
             setToken(response.response)
             toggleUser(response.response.username)
+            if(addAlert) {
+                addAlert({variant: "success", content: "Login successfully"})
+            }
             history.push("/dashboard/")
+        } else if(response.status === 500 ) {
+            if(addAlert) {
+                addAlert({variant: "danger", content: "Network Error, try again later."})
+            }
         } else {
-            setSubmitting(false)
+            if(addAlert) {
+                addAlert({variant: "danger", content: "Verify your data and try again."})
+            }
         }
+        setSubmitting(false)
     }
     
     return (
