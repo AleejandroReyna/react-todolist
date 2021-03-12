@@ -13,7 +13,7 @@ import getTasks from '../../services/getTasks.service'
 import { GetTasks } from '../../services/getTasks.interface'
 import editTask from '../../services/editTask.service'
 
-const Dashboard = () => {
+const Dashboard = ({ addAlert }) => {
     const [loading, setLoading] = useState(false)
     const [init, setInit] = useState(true)
     const [tasks, setTasks] = useState<Task[]>([]) 
@@ -42,9 +42,14 @@ const Dashboard = () => {
         const { id } = task
         if(id) {
             const request = await editTask(id, task)
-            const taskRequest:GetTasks = await getTasks()
-            if(taskRequest.data && taskRequest.status === 200) {
-                setTasks(taskRequest.data)
+            if(request.status === 200) {
+                addAlert({content: `the task with id: ${task.id} has updated!`, variant: "success"})
+                const taskRequest:GetTasks = await getTasks()
+                if(taskRequest.data && taskRequest.status === 200) {
+                    setTasks(taskRequest.data)
+                }
+            } else {
+                addAlert({content: "Error with network, try again later.", variant: "danger"})
             }
             setLoading(false)
         }

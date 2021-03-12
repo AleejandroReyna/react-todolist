@@ -2,17 +2,21 @@ import {
     Container, Row, Col,
     Alert
 } from 'react-bootstrap'
-import { AlertsContext } from '../../contexts/alerts.context'
 import { AlertContextProps } from '../../contexts/alert.interface'
 
-const Alerts = ({alerts, addAlert, deleteAlert}:AlertContextProps) => {
+const Alerts = ({alerts, deleteAlert}:AlertContextProps) => {
     if(alerts.length > 0) {
         return (
             <Container fluid>
                 <Row>
                     <Col>
                         {alerts.map((alert, idx) =>
-                            <Alert key={idx} variant={alert.variant} onClose={() => deleteAlert(alert)} dismissible>
+                            <Alert 
+                                key={idx} 
+                                variant={alert.variant} 
+                                onClose={() => deleteAlert ? deleteAlert(alert) : null} 
+                                dismissible
+                                >
                                 {alert.content}
                             </Alert>
                         )}    

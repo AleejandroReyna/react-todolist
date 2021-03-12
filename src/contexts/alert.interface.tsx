@@ -5,6 +5,6 @@ export interface Alert {
 
 export interface AlertContextProps {
     alerts: Alert[],
-    addAlert (alert: Alert) : void,
-    deleteAlert (alert: Alert) : void
+    addAlert? (alert: Alert) : void,
+    deleteAlert? (alert: Alert) : void
 }

@@ -29,11 +29,12 @@ const AppRouter = () => {
             </UserContext.Consumer>
             
             <AlertsContext.Consumer>
-                {({alerts, addAlert, deleteAlert}) =>
-                    <Alerts alerts={alerts} addAlert={addAlert} deleteAlert={deleteAlert} />
+                {({alerts, deleteAlert}) =>
+                    <Alerts alerts={alerts} deleteAlert={deleteAlert} />
                 }
             </AlertsContext.Consumer>
             <Switch>
+
                 <OnlyPublicRoute path="/login/">
                     <UserContext.Consumer>
                         {({user, toggleUser}) =>
@@ -41,6 +42,7 @@ const AppRouter = () => {
                         }
                     </UserContext.Consumer>
                 </OnlyPublicRoute>
+                
                 <PrivateRoute path="/logout/">
                     <UserContext.Consumer>
                         {({user, toggleUser}) =>
@@ -48,21 +50,31 @@ const AppRouter = () => {
                         }
                     </UserContext.Consumer>
                 </PrivateRoute>
+                
                 <OnlyPublicRoute path="/signup/">
                     <Signup />
                 </OnlyPublicRoute>
+                
                 <PrivateRoute path="/dashboard/">
-                    <Dashboard />
+                    <AlertsContext.Consumer>
+                        {( { addAlert } ) =>
+                            <Dashboard addAlert={addAlert} />
+                        }
+                    </AlertsContext.Consumer>
                 </PrivateRoute>
+                
                 <PrivateRoute path="/tasks/create/">
                     <CreateTask />
                 </PrivateRoute>
+                
                 <PrivateRoute path="/tasks/:id/edit/">
                     <EditTask />
                 </PrivateRoute>
+                
                 <PrivateRoute path="/tasks/:id/">
                     <DetailTask />
                 </PrivateRoute>
+                
                 <Route path="/">
                     <Home />
                 </Route>

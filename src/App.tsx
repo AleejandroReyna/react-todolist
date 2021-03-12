@@ -15,12 +15,12 @@ function App() {
   }
 
   const addAlert = (alert: Alert) => {
-    console.log(alert)
+    setAlerts([...alerts, alert])
   }
 
   const deleteAlert = (alert: Alert) => {
     let _alerts = [...alerts]
-    delete _alerts[alerts.indexOf(alert)]
+    _alerts.splice(_alerts.indexOf(alert), 1)
     setAlerts(_alerts)
   }
 
