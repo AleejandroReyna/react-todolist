@@ -58,12 +58,12 @@ const EditTask = () => {
                 <title>Edit Task {task.name}</title>
             </Helmet>
             {loading ?
-                <div className="my-4 text-center"><Spinner variant="primary" animation="border" /></div>
+                <div className="mb-4 text-center"><Spinner variant="primary" animation="border" /></div>
                 :
                 <Container>
                     <Row className="justify-content-center">
                         <Col xs={12} sm={10} md={8} lg={6}>
-                            <h3 className="my-4">Edit Task </h3>
+                            <h3 className="mb-4">Edit Task </h3>
                             <Card>
                                 <Card.Body>
                                     <TaskForm task={task} onSubmit={onSubmit} disabled={disabled} action="Edit" />

@@ -57,7 +57,7 @@ const Dashboard = () => {
             </Helmet>
             <Container fluid>
                 <Row>
-                    <Col className="py-4 d-flex justify-content-between align-items-center">
+                    <Col className="mb-4 d-flex justify-content-between align-items-center">
                         <h3>Dashboard</h3>
                         <Link to="/tasks/create/" className="btn btn-primary">Create Task</Link>          
                     </Col>

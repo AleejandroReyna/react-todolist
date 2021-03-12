@@ -42,7 +42,7 @@ const Login = ({user, toggleUser}:LoginProps) => {
         <Container>
             <Row className="justify-content-center">
                 <Col xs={12} sm={10} md={8} lg={6}>
-                    <Card className="mt-4">
+                    <Card>
                         <Card.Header className="text-center">
                             Login
                         </Card.Header>

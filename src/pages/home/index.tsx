@@ -15,7 +15,7 @@ const Home = () => {
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <section>
+            <section style={{marginTop: "-1.5rem"}}>
                 <Jumbotron>            
                     <h1 className='display-4'>React Todolist</h1>
                     <p className='lead'>This is a simplet Todolist project with react! </p>

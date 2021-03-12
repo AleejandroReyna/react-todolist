@@ -10,7 +10,7 @@ import { HeaderProps } from './headerProps.interface'
 const Header = ( {user}:HeaderProps ) => {
     
     return (
-        <Navbar bg="light" className="navbar-expand-lg">
+        <Navbar bg="light" className="navbar-expand-lg mb-4">
             <Container fluid>           
                 <Link to='/' className='navbar-brand'>React Todolist</Link>
                 <Nav className="mr-auto">

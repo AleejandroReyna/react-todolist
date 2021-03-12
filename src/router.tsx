@@ -16,6 +16,8 @@ import Header from './components/header'
 import Footer from './components/footer'
 import PrivateRoute from './components/privateRoute'
 import OnlyPublicRoute from './components/onlyPublicRoute'
+import Alerts from './components/alerts'
+import { AlertsContext } from './contexts/alerts.context'
 
 const AppRouter = () => {
     return (
@@ -25,6 +27,12 @@ const AppRouter = () => {
                     <Header user={user} />
                 }
             </UserContext.Consumer>
+            
+            <AlertsContext.Consumer>
+                {({alerts, addAlert, deleteAlert}) =>
+                    <Alerts alerts={alerts} addAlert={addAlert} deleteAlert={deleteAlert} />
+                }
+            </AlertsContext.Consumer>
             <Switch>
                 <OnlyPublicRoute path="/login/">
                     <UserContext.Consumer>

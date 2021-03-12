@@ -56,13 +56,13 @@ const DetailTask = () => {
                 <title>Task: { id }</title>
             </Helmet>
             {!task ?
-                <div className="text-center my-4"><Spinner variant="primary" animation="border" /></div>
+                <div className="text-center mb-4"><Spinner variant="primary" animation="border" /></div>
             :
                 <>
                     <Container>
                         <Row>
                             <Col>
-                                <h3 className="my-4">Task: {task.name}</h3>
+                                <h3 className="mb-4">Task: {task.name}</h3>
                                 <Card>
                                     <Card.Header>
                                         <h6>Info</h6>

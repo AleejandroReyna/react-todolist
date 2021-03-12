@@ -3,16 +3,32 @@ import Router from './router'
 import './App.css'
 import getUsername from './services/getUsername.service'
 import { UserContext } from './contexts/user.context'
+import { AlertsContext } from './contexts/alerts.context'
+import { Alert } from './contexts/alert.interface'
 
 
 function App() {
   const [username, setUsername] = useState(getUsername())
+  const [alerts, setAlerts] = useState<Alert[]>([])
   const changeUsername = (value:string) => {
     setUsername(value)
   }
+
+  const addAlert = (alert: Alert) => {
+    console.log(alert)
+  }
+
+  const deleteAlert = (alert: Alert) => {
+    let _alerts = [...alerts]
+    delete _alerts[alerts.indexOf(alert)]
+    setAlerts(_alerts)
+  }
+
   return (
       <UserContext.Provider value={{user: username, toggleUser: changeUsername}}>
-        <Router />
+        <AlertsContext.Provider value={{alerts, addAlert, deleteAlert}}>
+          <Router />
+        </AlertsContext.Provider>
       </UserContext.Provider>
   );
 }
