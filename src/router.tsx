@@ -57,7 +57,11 @@ const AppRouter = () => {
                 </PrivateRoute>
                 
                 <OnlyPublicRoute path="/signup/">
-                    <Signup />
+                    <AlertsContext.Consumer>
+                        {( { addAlert } ) =>
+                            <Signup addAlert={addAlert} />
+                        }
+                    </AlertsContext.Consumer>
                 </OnlyPublicRoute>
                 
                 <PrivateRoute path="/dashboard/">

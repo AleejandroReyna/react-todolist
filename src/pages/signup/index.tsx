@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet'
 import signup from '../../services/signup.service'
 import { useHistory } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = ({addAlert}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -24,6 +24,11 @@ const Signup = () => {
             let request = await signup({username, password})
             if(request.status === 201) {
                 history.push('/login/')
+                addAlert({variant: "success", content: "The user has been created!"})
+            } else if(request.status === 500) {
+                addAlert({variant: "danger", content: "Network Error, try again later."})
+            } else {
+                addAlert({variant: "danger", content: "Verify your data and try again."})
             }
             isSubmitting(false)
         }
