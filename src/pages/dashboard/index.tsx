@@ -11,9 +11,11 @@ import { Link } from 'react-router-dom'
 import { Task } from '../../services/task.interface'
 import getTasks from '../../services/getTasks.service'
 import { GetTasks } from '../../services/getTasks.interface'
+import editTask from '../../services/editTask.service'
 
 const Dashboard = () => {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [init, setInit] = useState(true)
     const [tasks, setTasks] = useState<Task[]>([]) 
 
     const getPanelTasks = (status: string):Task[] => {
@@ -21,18 +23,32 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        if(loading) {
+        if(init) {
+            console.log("initial data here")
             const getState = async () => {
                 const request:GetTasks = await getTasks()
                 if(request.data && request.status === 200) {
                     setTasks(request.data)
                 }
                 console.log(request)
-                setLoading(false)
+                setInit(false)
             }
             getState()
         }
-    }, [loading])
+    }, [init])
+
+    const taskUpdate = async ( task:Task ) => {
+        setLoading(true)
+        const { id } = task
+        if(id) {
+            const request = await editTask(id, task)
+            const taskRequest:GetTasks = await getTasks()
+            if(taskRequest.data && taskRequest.status === 200) {
+                setTasks(taskRequest.data)
+            }
+            setLoading(false)
+        }
+    }
 
     return (
         <>
@@ -48,16 +64,40 @@ const Dashboard = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <TaskPanel loading={loading} type="todo" label="To Do" tasks={getPanelTasks('todo')} variant="light" />
+                        <TaskPanel 
+                            loading={loading || init} 
+                            type="todo" 
+                            label="To Do" 
+                            tasks={getPanelTasks('todo')} 
+                            variant="outline-secondary"
+                            taskUpdate={taskUpdate} />
                     </Col>
                     <Col>
-                        <TaskPanel loading={loading} type="doing" label="Doing" tasks={getPanelTasks('doing')} variant="info" />
+                        <TaskPanel 
+                            loading={loading || init} 
+                            type="doing" 
+                            label="Doing" 
+                            tasks={getPanelTasks('doing')} 
+                            variant="info"
+                            taskUpdate={taskUpdate} />
                     </Col>
                     <Col>
-                        < TaskPanel loading={loading} type="inreview" label="In Review" tasks={getPanelTasks('inreview')} variant="primary" />
+                        <TaskPanel 
+                            loading={loading || init} 
+                            type="inreview" 
+                            label="In Review" 
+                            tasks={getPanelTasks('inreview')} 
+                            variant="primary"
+                            taskUpdate={taskUpdate} />
                     </Col>
                     <Col>
-                        < TaskPanel loading={loading} type="done" label="Done" tasks={getPanelTasks('done')} variant="success" />
+                        <TaskPanel 
+                            loading={loading || init} 
+                            type="done" 
+                            label="Done" 
+                            tasks={getPanelTasks('done')} 
+                            variant="success"
+                            taskUpdate={taskUpdate} />
                     </Col>
                 </Row>
             </Container>

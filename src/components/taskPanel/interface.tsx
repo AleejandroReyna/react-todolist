@@ -5,5 +5,6 @@ export interface TaskPanelProps {
     label: string,
     tasks: Task[],
     loading: boolean,
-    variant: string
+    variant: string,
+    taskUpdate( task:Task ): Promise<void> 
 }
