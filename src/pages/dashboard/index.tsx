@@ -29,8 +29,9 @@ const Dashboard = ({ addAlert }) => {
                 const request:GetTasks = await getTasks()
                 if(request.data && request.status === 200) {
                     setTasks(request.data)
+                } else {
+                    addAlert({content: "Error with network, try again later.", variant: "danger"})
                 }
-                console.log(request)
                 setInit(false)
             }
             getState()
@@ -47,6 +48,8 @@ const Dashboard = ({ addAlert }) => {
                 const taskRequest:GetTasks = await getTasks()
                 if(taskRequest.data && taskRequest.status === 200) {
                     setTasks(taskRequest.data)
+                } else {
+                    addAlert({content: "Error in request!", variant: "danger"})
                 }
             } else {
                 addAlert({content: "Error with network, try again later.", variant: "danger"})
