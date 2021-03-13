@@ -35,6 +35,10 @@ const AppRouter = () => {
                 }
             </AlertsContext.Consumer>
             <Switch>
+            
+                <Route exact path="/">
+                    <Home />
+                </Route>
 
                 <OnlyPublicRoute path="/login/">
                     <AlertsContext.Consumer>
@@ -100,11 +104,9 @@ const AppRouter = () => {
                         }
                     </AlertsContext.Consumer>
                 </PrivateRoute>
+                
                 <Route path="*">
                     <NotFound />
-                </Route>
-                <Route exact path="/">
-                    <Home />
                 </Route>
             </Switch>
             <Footer />
