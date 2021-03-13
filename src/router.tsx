@@ -49,11 +49,15 @@ const AppRouter = () => {
                 </OnlyPublicRoute>
                 
                 <PrivateRoute path="/logout/">
-                    <UserContext.Consumer>
-                        {({user, toggleUser}) =>
-                            <Logout user={user} toggleUser={toggleUser} />
+                    <AlertsContext.Consumer>
+                        {( { addAlert } ) =>    
+                            <UserContext.Consumer>
+                                {({toggleUser}) =>
+                                    <Logout toggleUser={toggleUser} addAlert={addAlert} />
+                                }
+                            </UserContext.Consumer>
                         }
-                    </UserContext.Consumer>
+                    </AlertsContext.Consumer>
                 </PrivateRoute>
                 
                 <OnlyPublicRoute path="/signup/">
@@ -77,7 +81,11 @@ const AppRouter = () => {
                 </PrivateRoute>
                 
                 <PrivateRoute path="/tasks/:id/edit/">
-                    <EditTask />
+                    <AlertsContext.Consumer>
+                        {( { addAlert } ) =>
+                            <EditTask addAlert={addAlert} />
+                        }
+                    </AlertsContext.Consumer>
                 </PrivateRoute>
                 
                 <PrivateRoute path="/tasks/:id/">

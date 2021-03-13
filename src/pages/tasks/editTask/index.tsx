@@ -19,7 +19,7 @@ interface EditInterface {
     id: string
 }
 
-const EditTask = () => {
+const EditTask = ({ addAlert }) => {
     const [task, setTask] = useState<Task>({id: "", name: "", content: "", status: ""})
     const [loading, setLoading] = useState(true)
     const [disabled, setDisabled] = useState(false)
@@ -33,8 +33,12 @@ const EditTask = () => {
         const request:ServiceTask = await editTask(id, task)
         if(request.status === 200 && request.data) {
             console.log(request.data)
+            addAlert({variant:"success", content: "The task has been updated."})
             history.push(`/tasks/${request.data.id}`)
+        } else if(request.status === 500) {
+            addAlert({variant:"danger", content: "Network error, try again later."})
         } else {
+            addAlert({variant:"danger", content: "Check your data and try again."})
             setDisabled(false)
         }
     }

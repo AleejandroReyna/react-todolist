@@ -30,6 +30,9 @@ const TaskForm = ({ task, onSubmit, action, disabled } : TaskFormProps) => {
                     value={_name} 
                     onChange={e => setName(e.target.value)}
                     disabled={disabled} />
+                    {!_name &&
+                        <small>This field is required</small>
+                    }
             </Form.Group>
             <Form.Group>
                 <label>Content: </label>
@@ -39,6 +42,9 @@ const TaskForm = ({ task, onSubmit, action, disabled } : TaskFormProps) => {
                     rows={5} 
                     onChange={e => setContent(e.target.value)}
                     disabled={disabled} />
+                    {!_content &&
+                        <small>This field is required</small>
+                    }
             </Form.Group>
             <Form.Group>
                 <label>Status:</label>
@@ -54,7 +60,7 @@ const TaskForm = ({ task, onSubmit, action, disabled } : TaskFormProps) => {
             </Form.Group>
             <Button 
                 onClick={_onSubmit}
-                disabled={disabled}
+                disabled={disabled || !_name || !_content || !_status}
             >{action} Task</Button>
         </Form>
     )

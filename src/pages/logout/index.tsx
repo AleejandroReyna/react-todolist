@@ -6,13 +6,14 @@ import {
 import { Helmet } from 'react-helmet'
 import { useHistory } from 'react-router-dom'
 
-const Logout = ({user, toggleUser}) => {
+const Logout = ({ toggleUser, addAlert}) => {
     const history = useHistory()
 
     useEffect(() => {
         localStorage.clear()
         toggleUser("")
-        history.push("/")
+        addAlert({variant: "success", content: "Your session has been closed."})
+        history.push("/login/")
     })
     return (
         <>
