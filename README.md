@@ -8,11 +8,11 @@ A simple todo list built with react!
 
 #### Step 01:
 
-Download and run {' '} [Django Todolist](https://github.com/AleejandroReyna/django-todolist)
+Download and run [Django Todolist](https://github.com/AleejandroReyna/django-todolist)
 
 #### Step 02:
 
-Clone the repo {' '} [here!](https://github.com/AleejandroReyna/react-todolist)
+Clone the repo [here!](https://github.com/AleejandroReyna/react-todolist)
 
 #### Step 03:
 
@@ -24,7 +24,7 @@ Set the enviroment variables.
 
 #### Step 05:
 
-Give me an <starfill>on {' '} [Github <github></github>](https://github.com/AleejandroReyna/react-todolist).</starfill>
+Give me an <starfill>on [Github <github></github>](https://github.com/AleejandroReyna/react-todolist).</starfill>
 
 #### Step 06:
 
