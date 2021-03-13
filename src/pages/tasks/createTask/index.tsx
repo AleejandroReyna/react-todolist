@@ -12,7 +12,7 @@ import {
 } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-const CreateTask = () => {
+const CreateTask = ({ addAlert }) => {
     const _task:Task = {name: '', content: '', status: 'todo'} 
     const [disabled, setDisabled] = useState(false)
     const history = useHistory()
@@ -21,10 +21,14 @@ const CreateTask = () => {
         setDisabled(true)
         const request:ServiceTask = await createTask(task)
         if(request.status === 201 && request.data) {
+            addAlert({variant: "success", content: "The task has been created."})
             history.push(`/tasks/${request.data.id}`)
+        } else if(request.status === 500) {
+            addAlert({variant: "danger", content: "Network Error, try again later."})
         } else {
-            setDisabled(false)
+            addAlert({variant: "danger", content: "Verify your data and try again"})
         }
+        setDisabled(false)
     }
 
     return (
@@ -35,7 +39,7 @@ const CreateTask = () => {
             <Container>
                 <Row className="justify-content-center">
                     <Col xs={12} sm={10} md={8} lg={6}>
-                        <h3 className="my-4">Create Task</h3>
+                        <h3 className="mb-4">Create Task</h3>
                         <Card>
                             <Card.Body>
                                 <TaskForm task={_task} onSubmit={onSubmit} disabled={disabled} action="Create" />

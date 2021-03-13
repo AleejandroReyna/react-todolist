@@ -77,7 +77,11 @@ const AppRouter = () => {
                 </PrivateRoute>
                 
                 <PrivateRoute path="/tasks/create/">
-                    <CreateTask />
+                <AlertsContext.Consumer>
+                    {( { addAlert } ) =>
+                        <CreateTask addAlert={addAlert} />
+                    }
+                    </AlertsContext.Consumer>
                 </PrivateRoute>
                 
                 <PrivateRoute path="/tasks/:id/edit/">
