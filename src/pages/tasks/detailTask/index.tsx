@@ -31,16 +31,18 @@ const DetailTask = ({ addAlert }) => {
 
     useEffect(() => {
         const getData = async () => {
-            const request:ServiceTask = await getTask(id)
-            if(request.status === 200 && request.data) {
-                setTask(request.data)
-            } else if(request.status === 404) {
-                addAlert({variant: "danger", content: `Task with id: ${id} not found.`})
-                history.push('/404/')
-            } else {
-                addAlert({variant: "danger", content: "Network error, verify your data and try again"})
+            if(!task) {
+                const request:ServiceTask = await getTask(id)
+                if(request.status === 200 && request.data) {
+                    setTask(request.data)
+                } else if(request.status === 404) {
+                    addAlert({variant: "danger", content: `Task with id: ${id} not found.`})
+                    history.push('/404/')
+                } else {
+                    addAlert({variant: "danger", content: "Network error, verify your data and try again"})
+                }
+                setLoading(false)
             }
-            setLoading(false)
         }
         getData()
     }, [loading])
