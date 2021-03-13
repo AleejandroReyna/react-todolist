@@ -21,7 +21,7 @@ interface DetailInterface {
     id: string
 }
 
-const DetailTask = () => {
+const DetailTask = ({ addAlert }) => {
     const [task, setTask] = useState<Task | null>(null)
     const [loading, setLoading] = useState(true)
     const params:DetailInterface = useParams() 
@@ -34,8 +34,13 @@ const DetailTask = () => {
             const request:ServiceTask = await getTask(id)
             if(request.status === 200 && request.data) {
                 setTask(request.data)
-                setLoading(false)
+            } else if(request.status === 404) {
+                addAlert({variant: "danger", content: `Task with id: ${id} not found.`})
+                history.push('/404/')
+            } else {
+                addAlert({variant: "danger", content: "Network error, verify your data and try again"})
             }
+            setLoading(false)
         }
         getData()
     }, [loading])

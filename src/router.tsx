@@ -18,6 +18,7 @@ import PrivateRoute from './components/privateRoute'
 import OnlyPublicRoute from './components/onlyPublicRoute'
 import Alerts from './components/alerts'
 import { AlertsContext } from './contexts/alerts.context'
+import NotFound from './pages/404'
 
 const AppRouter = () => {
     return (
@@ -77,10 +78,10 @@ const AppRouter = () => {
                 </PrivateRoute>
                 
                 <PrivateRoute path="/tasks/create/">
-                <AlertsContext.Consumer>
-                    {( { addAlert } ) =>
-                        <CreateTask addAlert={addAlert} />
-                    }
+                    <AlertsContext.Consumer>
+                        {( { addAlert } ) =>
+                            <CreateTask addAlert={addAlert} />
+                        }
                     </AlertsContext.Consumer>
                 </PrivateRoute>
                 
@@ -93,10 +94,16 @@ const AppRouter = () => {
                 </PrivateRoute>
                 
                 <PrivateRoute path="/tasks/:id/">
-                    <DetailTask />
+                    <AlertsContext.Consumer>
+                        {( { addAlert } ) =>
+                            <DetailTask addAlert={addAlert} />
+                        }
+                    </AlertsContext.Consumer>
                 </PrivateRoute>
-                
-                <Route path="/">
+                <Route path="*">
+                    <NotFound />
+                </Route>
+                <Route exact path="/">
                     <Home />
                 </Route>
             </Switch>
