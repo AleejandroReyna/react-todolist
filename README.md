@@ -1,3 +1,7 @@
+# REACT TODOLIST
+
+A simple todo list built with react!
+
 ### Get Started!
 
 <small>Step by Step guide to run React Todolist</small>
