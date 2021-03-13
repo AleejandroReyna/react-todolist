@@ -24,7 +24,7 @@ Set the enviroment variables.
 
 #### Step 05:
 
-Give me an <starfill>on [Github <github></github>](https://github.com/AleejandroReyna/react-todolist).</starfill>
+Give me an star on [Github <github></github>](https://github.com/AleejandroReyna/react-todolist).
 
 #### Step 06:
 
