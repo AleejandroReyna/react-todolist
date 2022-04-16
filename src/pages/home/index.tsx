@@ -53,7 +53,7 @@ const Home = () => {
                             <h4>Step 03:</h4>
                             <p className="mb-4">Copy <code>.env.example</code> and rename to <code>.env</code></p>
                             <h4>Step 04:</h4>
-                            <p className="mb-5">Give me an <StarFill /> on {' '} 
+                            <p className="mb-5">Give me a <StarFill /> on {' '} 
                                 <a href="https://github.com/AleejandroReyna/react-todolist" target="_blank" rel="noreferrer" 
                                 >Github <Github /></a>.</p>
                             <h3>With Docker Compose (Recommended method)</h3>
