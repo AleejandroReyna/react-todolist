@@ -23,7 +23,7 @@ const Home = () => {
                     <p>It's Working with{' '}
                         <a 
                             href="https://github.com/AleejandroReyna/django-todolist" 
-                            target='_blank' rel="noreferrer">django Todolist</a>!</p>
+                            target='_blank' rel="noreferrer">Django Todolist</a>!</p>
                     <Button href="https://github.com/AleejandroReyna/react-todolist" variant="primary"
                             target='_blank'>
                         <Github /> Go to Github
@@ -51,15 +51,27 @@ const Home = () => {
                                 <a href="https://github.com/AleejandroReyna/react-todolist" 
                                    rel="noreferrer" target="_blank">here!</a> </p>
                             <h4>Step 03:</h4>
-                            <p className="mb-4">Install the node modules with <code>yarn install</code> or <code>npm install</code>.</p>
+                            <p className="mb-4">Copy <code>.env.example</code> and rename to <code>.env</code></p>
                             <h4>Step 04:</h4>
-                            <p className="mb-4">Set the enviroment variables.</p>
-                            <h4>Step 05:</h4>
-                            <p className="mb-4">Give me an <StarFill /> on {' '} 
+                            <p className="mb-5">Give me a <StarFill /> on {' '} 
                                 <a href="https://github.com/AleejandroReyna/react-todolist" target="_blank" rel="noreferrer" 
                                 >Github <Github /></a>.</p>
-                            <h4>Step 06:</h4>
-                            <p>that's it all! Run the command <code>yarn start</code> or <code>npm start</code>.</p>
+                            <h3>With Docker Compose (Recommended method)</h3>
+                            <hr className="my-4"/>
+                            <h4>Step 05:</h4>
+                            <p className="mb-4">Install <a href="https://docs.docker.com/engine/install/">Docker</a></p>
+                            <h4>Final Step:</h4>
+                            <p className="mb-5">That's all. Run <code>docker-compose up</code>.</p>
+                            <h3>Manual Installation</h3>
+                            <hr className="my-4"/>
+                            <h4>Step 05:</h4>
+                            <p className="mb-4">Install <a target="_blank" rel="noreferrer" href="https://nodejs.org/en/">Node</a>.</p>
+                            <h4>Step 06: (Optional)</h4>
+                            <p className="mb-4">Install <a target="_blank" rel="noreferrer" href="https://yarnpkg.com/">Yarn</a>.</p>
+                            <h4>Step 07:</h4>
+                            <p className="mb-4">Install node modules with <code>yarn install</code> or <code>npm install</code>.</p> 
+                            <h4>Final Step:</h4>
+                            <p className="mb-5">That's all! Run the command <code>yarn start</code> or <code>npm start</code>.</p>
                         </Col>
                     </Row>
                 </Container>
