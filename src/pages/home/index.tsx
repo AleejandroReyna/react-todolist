@@ -23,7 +23,7 @@ const Home = () => {
                     <p>It's Working with{' '}
                         <a 
                             href="https://github.com/AleejandroReyna/django-todolist" 
-                            target='_blank' rel="noreferrer">django Todolist</a>!</p>
+                            target='_blank' rel="noreferrer">Django Todolist</a>!</p>
                     <Button href="https://github.com/AleejandroReyna/react-todolist" variant="primary"
                             target='_blank'>
                         <Github /> Go to Github
