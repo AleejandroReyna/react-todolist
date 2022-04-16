@@ -16,16 +16,36 @@ Clone the repo [here!](https://github.com/AleejandroReyna/react-todolist)
 
 #### Step 03:
 
-Install the node modules with `yarn install` or `npm install`.
+Copy `.env.example` and rename to `.env`
 
 #### Step 04:
 
-Set the enviroment variables.
+Give me a star on [Github](https://github.com/AleejandroReyna/react-todolist) .
+
+### With Docker Compose (Recommended method)
 
 #### Step 05:
 
-Give me an star on [Github <github></github>](https://github.com/AleejandroReyna/react-todolist).
+Install [Docker](https://docs.docker.com/engine/install/)
 
-#### Step 06:
+#### Final Step:
 
-that's it all! Run the command `yarn start` or `npm start`.
+That's all. Run `docker-compose up`.
+
+### Manual Installation
+
+#### Step 05:
+
+Install [Node](https://nodejs.org/en/).
+
+#### Step 06: (Optional)
+
+Install [Yarn](https://yarnpkg.com/).
+
+#### Step 07:
+
+Install node modules with `yarn install` or `npm install`.
+
+#### Final Step:
+
+That's all! Run the command `yarn start` or `npm start`.
